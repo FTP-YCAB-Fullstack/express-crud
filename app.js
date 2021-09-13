@@ -86,6 +86,23 @@ app.delete('/students/:id' , (req,res) => {
     })
 })
 
+app.put('/students/:id' , (req,res) => {
+    const { nama , role } = req.body
+    listStudents = listStudents.map(student => {
+        if(student.id === +req.params.id) {
+            return {
+                id: student.id,
+                nama,
+                role,
+            }
+        }
+        return student
+    })
+    res.send({
+        message: "success update student",
+    })
+})
+
 
 // routing for mentorr
 app.get('/mentors' , (req,res) => {
@@ -113,6 +130,23 @@ app.delete('/mentors/:id' , (req,res) => {
     })
 })
 
+app.put('/mentors/:id' , (req,res) => {
+    const { nama , batch } = req.body
+    listMentors = listMentors.map(mentor => {
+        if(mentor.id === +req.params.id) {
+            return {
+                id: mentor.id,
+                nama,
+                batch,
+            }
+        }
+        return mentor
+    })
+    res.send({
+        message: "success update mentor",
+    })
+})
+
 
 // routing for courses
 app.get('/courses' , (req,res) => {
@@ -135,5 +169,22 @@ app.delete('/courses/:id' , (req,res) => {
     listCourses = listCourses.filter(course => course.id !== +id)
     res.send({
         message: "success delete data course"
+    })
+})
+
+app.put('/courses/:id' , (req,res) => {
+    const { namaCourse , tingkatKesulitan } = req.body
+    listCourses = listCourses.map(course => {
+        if(course.id === +req.params.id) {
+            return {
+                id: course.id,
+                namaCourse,
+                tingkatKesulitan,
+            }
+        }
+        return course
+    })
+    res.send({
+        message: "success update course",
     })
 })
