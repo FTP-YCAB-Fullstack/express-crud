@@ -1,0 +1,84 @@
+// Students
+GET http://localhost:3000/students
+
+###
+
+POST http://localhost:3000/students
+content-type: application/json
+
+{
+    "nama": "yusril",
+    "role": "desainer"
+}
+
+###
+
+PUT http://localhost:3000/students/1
+Content-Type: application/json
+
+{
+    "nama": "dimas",
+    "role": "frontend"
+}
+
+###
+
+DELETE http://localhost:3000/students/1
+
+###
+
+// Mentors
+GET http://localhost:3000/mentors
+
+###
+
+POST http://localhost:3000/mentors
+content-type: application/json
+
+{
+    "nama": "luthfi",
+    "batch": "fantastic falkor"
+}
+
+###
+
+PUT http://localhost:3000/mentors/1
+Content-Type: application/json
+
+{
+    "nama": "latif",
+    "batch": "mastah falkor"
+}
+
+###
+
+DELETE http://localhost:3000/mentors/1
+
+###
+
+// Courses
+GET http://localhost:3000/courses
+
+###
+
+POST http://localhost:3000/courses
+content-type: application/json
+
+{
+    "namaCourse": "Belajar Javascript",
+    "tingkatKesulitan": "menengah"
+}
+
+###
+
+PUT http://localhost:3000/mentors/1
+Content-Type: application/json
+
+{
+    "namaCourse": "Belajar Jaringan",
+    "tingkatKesulitan": "menengah"
+}
+
+###
+
+DELETE http://localhost:3000/courses/1
