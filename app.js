@@ -67,10 +67,17 @@ app.get('/students' , (req,res) => {
     })
 })
 
+app.get('/students/:id' , (req,res) => {
+    let student = listStudents.find(student => student.id === +req.params.id)
+    res.send({
+        student
+    })
+})
+
 app.post('/students' , (req,res) => {
     const { id , nama , role } = req.body
     listStudents.push({ id, nama, role })
-    res.send({
+    res.status(201).send({
         message: "success create student",
         student: {
             id, nama,role
@@ -111,10 +118,17 @@ app.get('/mentors' , (req,res) => {
     })
 })
 
+app.get('/mentors/:id' , (req,res) => {
+    let mentor = listMentors.find(mentor => mentor.id === +req.params.id)
+    res.send({
+        mentor
+    })
+})
+
 app.post('/mentors' , (req,res) => {
     const { id , nama , batch } = req.body
     listMentors.push({ id , nama , batch })
-    res.send({
+    res.status(201).send({
         message: "success crete mentors",
         mentor: {
             id,nama,batch
@@ -155,10 +169,17 @@ app.get('/courses' , (req,res) => {
     })
 })
 
+app.get('/courses/:id' , (req,res) => {
+    let course = listCourses.find(course => course.id === +req.params.id)
+    res.send({
+        course
+    })
+})
+
 app.post('/courses' , (req,res) => {
     const { id , namaCourse , tingkatKesulitan } = req.body
     listCourses.push({ id , namaCourse , tingkatKesulitan })
-    res.send({
+    res.status(201).send({
         message: "success create course",
         course: { id , namaCourse , tingkatKesulitan }
     })
