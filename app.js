@@ -54,7 +54,7 @@ let courses = [
 
 /// STUDENTS
 app.get("/student",(req,res) => {
-    res.status(200).send(students)
+    res.status(200).json(students)
 })
 
 app.post("/student/create",(req,res) => {
@@ -66,12 +66,12 @@ app.post("/student/create",(req,res) => {
 
     students.push(payload)
     
-    res.send(students)
+    res.status(201).json(students)
 })
 
 app.delete("/student/delete/:id",(req,res) => {
     students = students.filter((el) => el.id !== req.params.id*1);
-    res.send(students)
+    res.status(202).json(students)
 })
 
 app.put("/student/put/:id",(req,res) => {
@@ -85,7 +85,7 @@ app.put("/student/put/:id",(req,res) => {
 
     students[ind] = payload
 
-    res.send(students)
+    res.status(202).json(students)
 })
 
 app.patch("/student/patch/:id",(req,res) => {
@@ -93,14 +93,14 @@ app.patch("/student/patch/:id",(req,res) => {
 
     students[ind] = {...students[ind],...req.body}
 
-    res.send(students)
+    res.status(202).json(students)
 
 })
 
 
 // MENTOR
 app.get("/mentor",(req,res) => {
-    res.status(200).send(mentors)
+    res.status(200).json(mentors)
 })
 
 app.post("/mentor/create",(req,res) => {
@@ -112,12 +112,12 @@ app.post("/mentor/create",(req,res) => {
 
     mentors.push(payload)
     
-    res.send(mentors)
+    res.status(201).json(mentors)
 })
 
 app.delete("/mentor/delete/:id",(req,res) => {
     mentors = mentors.filter((el) => el.id !== req.params.id*1);
-    res.send(mentors)
+    res.status(202).json(mentors)
 })
 
 app.put("/mentor/put/:id",(req,res) => {
@@ -131,7 +131,7 @@ app.put("/mentor/put/:id",(req,res) => {
 
     mentors[ind] = payload
 
-    res.send(mentors)
+    res.status(202).json(mentors)
 })
 
 app.patch("/mentor/patch/:id",(req,res) => {
@@ -139,13 +139,13 @@ app.patch("/mentor/patch/:id",(req,res) => {
 
     mentors[ind] = {...mentors[ind],...req.body}
 
-    res.send(mentors)
+    res.status(202).json(mentors)
 
 })
 
 // COURSES
 app.get("/course",(req,res) => {
-    res.status(200).send(courses)
+    res.status(200).json(courses)
 })
 
 app.post("/course/create",(req,res) => {
@@ -157,12 +157,12 @@ app.post("/course/create",(req,res) => {
 
     courses.push(payload)
     
-    res.send(courses)
+    res.status(201).json(courses)
 })
 
 app.delete("/course/delete/:id",(req,res) => {
     courses = courses.filter((el) => el.id !== req.params.id*1);
-    res.send(courses)
+    res.status(202).json(courses)
 })
 
 app.put("/course/put/:id",(req,res) => {
@@ -176,7 +176,7 @@ app.put("/course/put/:id",(req,res) => {
 
     courses[ind] = payload
 
-    res.send(courses)
+    res.status(202).json(courses)
 })
 
 app.patch("/course/patch/:id",(req,res) => {
@@ -184,7 +184,7 @@ app.patch("/course/patch/:id",(req,res) => {
 
     courses[ind] = {...courses[ind],...req.body}
 
-    res.send(courses)
+    res.status(202).json(courses)
 
 })
 
