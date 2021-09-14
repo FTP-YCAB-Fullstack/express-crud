@@ -11,9 +11,8 @@ app.get('/', (req, res) => {
     res.send('server running')
 });
 
-// // STUDENT
 
-const murid =  [
+let murid =  [
     {
         id: 1,
         nama: "al",
@@ -26,6 +25,33 @@ const murid =  [
     }
 ]
 
+let mentor =  [
+    {
+        id: 1,
+        nama: "afista",
+        batch: "FF"
+    },
+    {
+        id: 2,
+        nama: "eddy",
+        batch: "FF" 
+    }
+]
+
+let courses =  [
+    {
+        id: 1,
+        namaCourse: "React Js",
+        tingkatKesulitan: "Sulit"
+    },
+    {
+        id: 2,
+        namaCourse: "HTML",
+        tingkatKesulitan: "Mudah" 
+    }
+]
+
+//Murid
 
 app.get("/student", (req, res) => {
     res.status(200).send(murid)
@@ -42,11 +68,83 @@ app.post("/student/post", (req, res) => {
     res.send(murid)
 })
 
-app.delete("student/:id", (req, res) => {
-     murid = murid.filter(element => element.id !== +req.params.id)
+app.delete("/student/delete/:id", (req, res) => {
+     murid = murid.filter(element => element.id !== +req.params.id);
+    
      res.send(murid)
 })
- 
 
+app.put("/student/update/:id", (req, res) => {
+    let index = req.params.id -1;
+    const payload = { 
+        id : req.body.id,
+        nama : req.body.nama,
+        role : req.body.role
+    }
+    murid[index] = payload
+    res.send(murid)
+})
 
-app.listen(3000, () => console.log('server running'));
+// Mentor
+
+app.get("/mentor", (req, res) =>{
+    res.status(200).send(mentor)
+})
+
+app.post("/mentor/post", (req,res) => {
+    let payload = {
+        id: mentor.length+1,
+        nama: req.body.nama,
+        batch: req.body.batch
+    }
+    mentor.push(payload)
+    res.send(mentor)
+})
+app.delete("/mentor/delete/:id", (req, res) => {
+    mentor = mentor.filter(el => el.id !== req.params.id*1);
+    res.send(mentor)
+})
+
+app.put("/mentor/update/:id", (req, res) => {
+    let index = req.params.id -1;
+    const payload = { 
+        id : req.body.id,
+        nama : req.body.nama,
+        batch : req.body.batch
+    }
+    mentor[index] = payload
+    res.send(mentor)
+})
+
+//Courses
+app.get("/course", (req, res) =>{
+    res.status(200).send(courses)
+})
+
+app.post("/course/post", (req,res) => {
+    let payload = {
+        id: courses.length+1,
+        namaCourse: req.body.nama,
+        tingkatKesulitan: req.body.tingkatKesulitan
+    }
+    courses.push(payload)
+    res.send(courses)
+})
+app.delete("/course/delete/:id", (req, res) => {
+    courses = courses.filter(el => el.id !== req.params.id*1);
+    res.send(courses)
+})
+
+app.put("/course/update/:id", (req, res) => {
+    let index = req.params.id -1;
+    const payload = { 
+        id : req.body.id,
+        namaCourse : req.body.namaCourse,
+        tingkatKesulitan : req.body.tingkatKesulitan
+    }
+    courses[index] = payload
+    res.send(courses)
+
+})
+
+app.listen(3000, () => console.log('server running')); 
