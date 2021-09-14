@@ -209,7 +209,7 @@ app.put('/mentors/:id', (req, res) => {
         batch
     }
     mentors[index] = {...newObj};
-    res.status(201).json({
+    res.status(200).json({
         status: 'success',
         data: mentors[index]
     })
@@ -224,7 +224,7 @@ app.put('/courses/:id', (req, res) => {
         kesulitan
     }
     courses[index] = {...newObj};
-    res.status(201).json({
+    res.status(200).json({
         status: 'success',
         data: courses[index]
     })
