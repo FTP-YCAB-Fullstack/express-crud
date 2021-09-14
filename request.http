@@ -1,0 +1,109 @@
+### No 1 CRUD
+GET  http://localhost:3000/
+content-type: application/json
+
+{
+
+}
+
+### No 2 Create Student
+POST http://localhost:3000/newStudent
+content-type: application/json
+
+{
+    "nama": "Alimi",
+    "role": "kalem"
+}
+
+### No 2 Read Student
+GET  http://localhost:3000/getStudent
+content-type: application/json
+
+{
+
+}
+
+
+### No 2 Update Student
+PATCH   http://localhost:3000/patchStudent
+content-type: application/json
+
+{
+    
+}
+
+### No 2 Delete Student
+DELETE  http://localhost:3000/deleteStudent
+content-type: application/json
+
+{
+    
+}
+
+### No 3 Create Mentor
+POST http://localhost:3000/newMentor
+content-type: application/json
+
+{
+    "nama": "Mas Luthfi",
+    "batch": "Fantastic Falkor"
+}
+
+### No 3 Read Mentor
+GET  http://localhost:3000/getMentor
+content-type: application/json
+
+{
+
+}
+
+
+### No 3 Update Mentor
+PATCH   http://localhost:3000/patchMentor
+content-type: application/json
+
+{
+    
+}
+
+### No 3 Delete Mentor
+DELETE  http://localhost:3000/deleteMentor
+content-type: application/json
+
+{
+    
+}
+
+### No 3 Create Courses
+POST http://localhost:3000/newCourses
+content-type: application/json
+
+{
+    "namaCourses": "Belajar ReactJS",
+    "tingkatKesulitan": "Hard"
+}
+
+### No 3 Read Courses
+GET  http://localhost:3000/getCourses
+content-type: application/json
+
+{
+
+}
+
+
+### No 4 Update Courses
+PATCH   http://localhost:3000/patchCourses
+content-type: application/json
+
+{
+    
+}
+
+### No 4 Delete Courses
+DELETE  http://localhost:3000/deleteCourses
+content-type: application/json
+
+{
+    
+}
