@@ -65,13 +65,15 @@ app.post("/student/post", (req, res) => {
     }
     murid.push(payload)
 
-    res.send(murid)
+    res.status(201).json(murid) 
+
 })
 
 app.delete("/student/delete/:id", (req, res) => {
      murid = murid.filter(element => element.id !== +req.params.id);
     
-     res.send(murid)
+     res.status(204).json(murid)
+
 })
 
 app.put("/student/update/:id", (req, res) => {
@@ -82,13 +84,15 @@ app.put("/student/update/:id", (req, res) => {
         role : req.body.role
     }
     murid[index] = payload
-    res.send(murid)
+    res.status(202).json(murid)
+
 })
 
 // Mentor
 
 app.get("/mentor", (req, res) =>{
-    res.status(200).send(mentor)
+    res.status(200).json(mentor)
+
 })
 
 app.post("/mentor/post", (req,res) => {
@@ -98,11 +102,13 @@ app.post("/mentor/post", (req,res) => {
         batch: req.body.batch
     }
     mentor.push(payload)
-    res.send(mentor)
+    res.status(201).json(mentor)
+
 })
 app.delete("/mentor/delete/:id", (req, res) => {
     mentor = mentor.filter(el => el.id !== req.params.id*1);
-    res.send(mentor)
+    res.status(204).json(cmentor)
+
 })
 
 app.put("/mentor/update/:id", (req, res) => {
@@ -113,7 +119,8 @@ app.put("/mentor/update/:id", (req, res) => {
         batch : req.body.batch
     }
     mentor[index] = payload
-    res.send(mentor)
+    res.status(202).json(mentor)
+
 })
 
 //Courses
@@ -128,11 +135,11 @@ app.post("/course/post", (req,res) => {
         tingkatKesulitan: req.body.tingkatKesulitan
     }
     courses.push(payload)
-    res.send(courses)
+    res.status(201).json(courses)
 })
 app.delete("/course/delete/:id", (req, res) => {
     courses = courses.filter(el => el.id !== req.params.id*1);
-    res.send(courses)
+    res.status(204).json(courses)
 })
 
 app.put("/course/update/:id", (req, res) => {
@@ -143,8 +150,7 @@ app.put("/course/update/:id", (req, res) => {
         tingkatKesulitan : req.body.tingkatKesulitan
     }
     courses[index] = payload
-    res.send(courses)
-
+    res.status(202).json(courses)
 })
 
-app.listen(3000, () => console.log('server running')); 
+app.listen(3000, () => console.log('server running'));
