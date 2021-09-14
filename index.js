@@ -78,6 +78,22 @@ app.get('/students/:studentId', (req, res) => {
     res.status(200).json(students.filter((student => student.id === +req.params.studentId)))
 })
 
+app.post('/students', (req, res) => {
+    const { id, nama, role } = req.body;
+
+    const addStudent = {
+        id: id,
+        nama: nama,
+        role: role
+    };
+
+    students.push(addStudent);
+    res.status(200).json({
+        message: 'Adding a new student data',
+        student: createStudent
+    })
+})
+
 // ==================== MENTORS ==================== // 
 
 app.get('/mentors', (req, res) => {
@@ -88,7 +104,23 @@ app.get('/mentors/:mentorId', (req, res) => {
     res.status(200).json(mentors.filter((mentor => mentor.id === +req.params.mentorId)))
 })
 
-// ==================== MENTORS ==================== //
+app.post('/mentors', (req, res) => {
+    const { id, nama, batch } = req.body;
+
+    const addMentor = {
+        id: id,
+        nama: nama,
+        batch: batch
+    };
+
+    mentors.push(addMentor);
+    res.status(200).json({
+        message: 'Adding a new mentor',
+        mentor: addMentor
+    })
+})
+
+// ==================== Courses ==================== //
 
 app.get('/courses', (req, res) => {
     res.status(200).json(courses)
@@ -96,4 +128,20 @@ app.get('/courses', (req, res) => {
 
 app.get('/courses/:courseId', (req, res) => {
     res.status(200).json(courses.filter((course => course.id === +req.params.courseId)))
+})
+
+app.post('/courses', (req, res) => {
+    const { id, nama, tingkatKesulitan } = req.body;
+
+    const addCourse = {
+        id: id,
+        nama: nama,
+        tingkatKesulitan: tingkatKesulitan
+    };
+
+    courses.push(addCourse);
+    res.status(200).json({
+        message: 'Adding a new course',
+        course: addCourse
+    })
 })
