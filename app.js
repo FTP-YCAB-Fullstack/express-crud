@@ -94,7 +94,6 @@ let courses = [
 
 
 /// STUDENTS
-
 app.get("/student",(req,res) => {
     res.status(200).send(students)
 })
@@ -116,5 +115,118 @@ app.delete("/student/delete/:id",(req,res) => {
     res.send(students)
 })
 
+app.put("/student/put/:id",(req,res) => {
+    let ind = req.params.id - 1;
+
+    const payload = {
+        id : req.body.id,
+        nama : req.body.namaMurid,
+        role : req.body.role
+    }
+
+    students[ind] = payload
+
+    res.send(students)
+})
+
+app.patch("/student/patch/:id",(req,res) => {
+    let ind = req.params.id - 1;
+
+    students[ind] = {...students[ind],...req.body}
+
+    res.send(students)
+
+})
+
+
+// MENTOR
+app.get("/mentor",(req,res) => {
+    res.status(200).send(mentors)
+})
+
+app.post("/mentor/create",(req,res) => {
+    let payload = {
+        id : mentors.length + 1,
+        nama : req.body.namaMentor,
+        batch : req.body.batch
+    }
+
+    mentors.push(payload)
+    
+    res.send(mentors)
+})
+
+app.delete("/mentor/delete/:id",(req,res) => {
+    mentors = mentors.filter((el) => el.id !== req.params.id*1);
+    res.send(mentors)
+})
+
+app.put("/mentor/put/:id",(req,res) => {
+    let ind = req.params.id - 1;
+
+    const payload = {
+        id : req.body.id,
+        nama : req.body.namaMentor,
+        batch : req.body.batch
+    }
+
+    mentors[ind] = payload
+
+    res.send(mentors)
+})
+
+app.patch("/mentor/patch/:id",(req,res) => {
+    let ind = req.params.id - 1;
+
+    mentors[ind] = {...mentors[ind],...req.body}
+
+    res.send(mentors)
+
+})
+
+// COURSES
+app.get("/course",(req,res) => {
+    res.status(200).send(courses)
+})
+
+app.post("/course/create",(req,res) => {
+    let payload = {
+        id : courses.length + 1,
+        namaCourse : req.body.namaCourse,
+        tingkatKesulitan : req.body.tingkatKesulitan
+    }
+
+    courses.push(payload)
+    
+    res.send(courses)
+})
+
+app.delete("/course/delete/:id",(req,res) => {
+    courses = courses.filter((el) => el.id !== req.params.id*1);
+    res.send(courses)
+})
+
+app.put("/course/put/:id",(req,res) => {
+    let ind = req.params.id - 1;
+
+    const payload = {
+        id : req.body.id,
+        namaCourse : req.body.namaCourse,
+        tingkatKesulitan : req.body.tingkatKesulitan
+    }
+
+    courses[ind] = payload
+
+    res.send(courses)
+})
+
+app.patch("/course/patch/:id",(req,res) => {
+    let ind = req.params.id - 1;
+
+    courses[ind] = {...courses[ind],...req.body}
+
+    res.send(courses)
+
+})
 
 app.listen(3000, () => console.log("server running"))
