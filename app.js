@@ -91,10 +91,23 @@ app.put("/student/put/:id",(req,res) => {
 app.patch("/student/patch/:id",(req,res) => {
     let ind = req.params.id - 1;
 
-    students[ind] = {...students[ind],...req.body}
+    const {nama,role} = req.body
 
-    res.status(202).json(students)
+    const payload = {
+        id : students[ind].id,
+        nama : nama,
+        role : role
+    }
 
+    for (let prop in payload){
+        if (payload[prop] === undefined){
+            delete payload[prop]
+        }
+    }
+
+    students[ind] = {...students[ind],...payload}
+    res.send(students)
+    
 })
 
 
@@ -137,8 +150,21 @@ app.put("/mentor/put/:id",(req,res) => {
 app.patch("/mentor/patch/:id",(req,res) => {
     let ind = req.params.id - 1;
 
-    mentors[ind] = {...mentors[ind],...req.body}
+    const {nama,batch} = req.body
 
+    const payload = {
+        id : mentors[ind].id,
+        nama : nama,
+        batch : batch
+    }
+
+    for (let prop in payload){
+        if (payload[prop] === undefined){
+            delete payload[prop]
+        }
+    }
+
+    mentors[ind] = {...mentors[ind],...payload}
     res.status(202).json(mentors)
 
 })
@@ -182,8 +208,21 @@ app.put("/course/put/:id",(req,res) => {
 app.patch("/course/patch/:id",(req,res) => {
     let ind = req.params.id - 1;
 
-    courses[ind] = {...courses[ind],...req.body}
+    const {namaCourse,tingkatKesulitan} = req.body
 
+    const payload = {
+        id : courses[ind].id,
+        namaCourse : namaCourse,
+        tingkatKesulitan : tingkatKesulitan
+    }
+
+    for (let prop in payload){
+        if (payload[prop] === undefined){
+            delete payload[prop]
+        }
+    }
+
+    courses[ind] = {...courses[ind],...payload}
     res.status(202).json(courses)
 
 })
