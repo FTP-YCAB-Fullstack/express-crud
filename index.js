@@ -4,13 +4,14 @@ const express = require('express');
 
 const index = express();
 
-// index.get('/', (req, res) => {
-//     res.send('server running');
-// });
-// // No 1
-// index.get("/crud", (req, res) => {
-//     res.send("Students, Mentors, Course")
-// })
+index.get('/', (req, res) => {
+    res.send('server running');
+});
+
+// No 1
+index.get("/crud", (req, res) => {
+    res.send("Students, Mentors, Course")
+})
 
 //Percobaan
 // index.get("/crud1", (req, res) => {
