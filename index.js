@@ -94,6 +94,13 @@ app.post('/students', (req, res) => {
     })
 })
 
+app.delete('/students/:studentId', (req, res) => {
+    students = students.filter(student => student.id !== +req.params.studentId)
+    res.status(204).json({
+        message: 'Students deleted!'
+    })
+})
+
 // ==================== MENTORS ==================== // 
 
 app.get('/mentors', (req, res) => {
@@ -120,6 +127,13 @@ app.post('/mentors', (req, res) => {
     })
 })
 
+app.delete('/mentors/:mentorId', (req, res) => {
+    mentors = mentors.filter(mentor => mentor.id !== +req.params.mentorId)
+    res.status(204).json({
+        message: 'Mentors deleted!'
+    })
+})
+
 // ==================== Courses ==================== //
 
 app.get('/courses', (req, res) => {
@@ -143,5 +157,12 @@ app.post('/courses', (req, res) => {
     res.status(200).json({
         message: 'Adding a new course',
         course: addCourse
+    })
+})
+
+app.delete('/courses/:courseId', (req, res) => {
+    courses = courses.filter(course => course.id !== +req.params.courseId)
+    res.status(204).json({
+        message: 'Courses deleted!'
     })
 })
