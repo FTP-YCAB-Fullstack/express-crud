@@ -237,7 +237,7 @@ app.delete('/students/:id', (req, res) => {
 
 app.delete('/mentors/:id', (req, res) => {
     mentors = mentors.filter(el => el.id !== +req.params.id);
-    res.status(200).json({})
+    res.status(204).json({})
 })
 
 app.delete('/courses/:id', (req, res) => {
