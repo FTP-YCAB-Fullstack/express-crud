@@ -58,12 +58,12 @@ app.get("/student", (req, res) => {
 })
 
 app.post("/student/post", (req, res) => {
-    let payload = {
+    let studentCop = {
           id : murid.length+1,
         nama : req.body.nama,
         role : req.body.role
     }
-    murid.push(payload)
+    murid.push(studentCop)
 
     res.status(201).json(murid) 
 
@@ -78,12 +78,12 @@ app.delete("/student/delete/:id", (req, res) => {
 
 app.put("/student/update/:id", (req, res) => {
     let index = req.params.id -1;
-    const payload = { 
+    const studentCop = { 
         id : req.body.id,
         nama : req.body.nama,
         role : req.body.role
     }
-    murid[index] = payload
+    murid[index] = studentCop
     res.status(202).json(murid)
 
 })
@@ -96,29 +96,29 @@ app.get("/mentor", (req, res) =>{
 })
 
 app.post("/mentor/post", (req,res) => {
-    let payload = {
+    let mentorCop = {
         id: mentor.length+1,
         nama: req.body.nama,
         batch: req.body.batch
     }
-    mentor.push(payload)
+    mentor.push(mentorCop)
     res.status(201).json(mentor)
 
 })
 app.delete("/mentor/delete/:id", (req, res) => {
     mentor = mentor.filter(el => el.id !== req.params.id*1);
-    res.status(204).json(cmentor)
+    res.status(204).json(mentor)
 
 })
 
 app.put("/mentor/update/:id", (req, res) => {
     let index = req.params.id -1;
-    const payload = { 
+    const mentorCop = { 
         id : req.body.id,
         nama : req.body.nama,
         batch : req.body.batch
     }
-    mentor[index] = payload
+    mentor[index] = mentorCop
     res.status(202).json(mentor)
 
 })
@@ -129,12 +129,12 @@ app.get("/course", (req, res) =>{
 })
 
 app.post("/course/post", (req,res) => {
-    let payload = {
+    let coursesCop = {
         id: courses.length+1,
         namaCourse: req.body.nama,
         tingkatKesulitan: req.body.tingkatKesulitan
     }
-    courses.push(payload)
+    courses.push(coursesCop)
     res.status(201).json(courses)
 })
 app.delete("/course/delete/:id", (req, res) => {
@@ -144,12 +144,12 @@ app.delete("/course/delete/:id", (req, res) => {
 
 app.put("/course/update/:id", (req, res) => {
     let index = req.params.id -1;
-    const payload = { 
+    const coursesCop = { 
         id : req.body.id,
         namaCourse : req.body.namaCourse,
         tingkatKesulitan : req.body.tingkatKesulitan
     }
-    courses[index] = payload
+    courses[index] = coursesCop
     res.status(202).json(courses)
 })
 
