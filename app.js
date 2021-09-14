@@ -103,7 +103,7 @@ app.put("/mentor/:id", (req, res) => {
   mentor = mentor.map((item, index) => {
     if (Number(req.params.id) === index) {
       return {
-        nama: "avis",
+        nama: "David",
         bacth: "menthor",
       };
     }
@@ -113,7 +113,7 @@ app.put("/mentor/:id", (req, res) => {
 });
 
 app.delete("/mentor/:id", (req, res) => {
-  res.send(
+  res.status(204).send(
     mentor.filter((item, index) => {
       if (Number(req.params.id) === index) {
         return (mentor = mentor.slice(1));
@@ -153,7 +153,7 @@ app.put("/course/:id", (req, res) => {
     if (Number(req.params.id) === index) {
       return {
         namaCourse: "JavaScript",
-        tingkatKesulitan: "menthor",
+        tingkatKesulitan: "hard",
       };
     }
     return item;
@@ -162,7 +162,7 @@ app.put("/course/:id", (req, res) => {
 });
 
 app.delete("/course/:id", (req, res) => {
-  res.send(
+  res.status(204).send(
     course.filter((item, index) => {
       if (Number(req.params.id) === index) {
         return (course = course.slice(1));
