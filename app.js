@@ -10,7 +10,10 @@ let id=0;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json())
 app.get('/siswa', function(req, res){
-    res.send(siswa)
+    res.status(200).json({
+        message: 'sukses get data'
+    })
+
 });
 
 app.post('/siswa', (req, res) => {
