@@ -1,113 +1,89 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+
 
 const app = express()
 
 
-const siswa=[
-    {
-        id: 1,
-        name: 'wirahadi',
-        role: 'student'
-    },
-    {
-        id:2,
-        name: 'ihsan',
-        role: 'student'
-    },
-    {
-        id:3,
-        name: 'iqbal',
-        role: 'student'
-    }
-];
+let siswa=[];
+let id=0;
 
-const mentor=[
-    {
-        id: 1,
-        name:'mas eddy',
-        batch: 'fantastic falkour'
-    },
-    {
-        id: 2,
-        name:'mas afis',
-        batch:'fantastic falkour'
-    },
-    {
-        id:3,
-        name: 'mas luthfi',
-        batch: 'fantastic falkour'
-    }
-]
-
-const course=[
-    {
-        id: 1,
-        namaCourse: 'javascript',
-        tingkatKesulitan: 'sangat susah'
-    },
-    {
-        id:2,
-        namaCourse: 'html',
-        tingkatKesulitan: 'menengah',
-    },
-    {
-        id:3,
-        namaCourse: 'reactjs',
-        tingkatKesulitan: 'menengah',
-    }
-];
-
-app.use(express.urlencoded({ extended: true }));
-
-app.get('/', function(req, res){
-    res.status(200).json(siswa);
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json())
+app.get('/siswa', function(req, res){
+    res.send(siswa)
 });
 
-app.get('/siswa/:siswaId', (req, res) => {
-    res.status(200).json(siswa.filter((siswa)=> siswa.id === +req.params.siswaId));
-})
-
-app.post('/addsiswa', (req, res) => {
-    // const { id, name } = req.body;
+app.post('/siswa', (req, res) => {
+    const { id, name, role } = req.body;
 
     let newSiswa = {
-        "id": req.body.id,
-        "name": req.body.name,
-        "role": req.body.role,
+        id: siswa.length +1,
+        name,
+        role,
     };
     siswa.push(newSiswa)
-
-    // res.status(201).json({
-    //     message: 'Success post new data',
-    //     siswa: newSiswa,
-    // });
-    res.status(201).json(newSiswa)
-    res.send(newSiswa)
+    if(name&&role != null){
+        res.status(201).json({
+            message: 'sukses menambah data'
+        })
+    }else{
+        res.status(404).json({
+            message: 'field masih kosong'
+        })
+    }
 });
 
-app.put('/editSiswa/:id', (req, res)=>{
+app.get('/siswa/:id', (req,res)=>{
+    const {id} = req.params;
 
-    let found = siswa.find(function(item){
-        return item.id === parseInt(+req.params.id);
-    });
+    const foundSiswa = siswa.find((newSiswa) => newSiswa.id === id);
+    res.send(foundSiswa)
+});
 
-    if(found){
-        let updated = {
-            id: found.id,
-            name: req.body.name,
-            role: req.body.role
-        };
+app.delete('/siswa/:id', (req, res)=>{
+    const {id} = req.params;
 
-        let targetIndex = siswa.indexOf(found);
+    siswa = siswa.filter((user)=> user.id !== id);
+    res.send(`siswa delete dari database ${siswa}`);
+})
+
+app.patch('/siswa/:id', (req, res)=>{
+    const id = req.params.id -1;
+    const {name, role} = req.body
     
-        // siswa.splice(targetIndex, found.id, updated);
-        siswa.splice(targetIndex, 3, updated)
-        res.sendStatus(204);
-    }else{
-        res.sendStatus(404)
+    const user = siswa.find((user) => user.id === id);
+    
+    const editted={
+        name,
+        role
     }
+
+    siswa[id] = {...siswa[id], ...editted}
+        res.send(200).json({
+            status: 'sukses patch data',
+            data: siswa[id]
+        })
+
+})
+
+app.put('/siswa/:id', (req, res)=>{
+    // const{id} = req.params;
+    const id = req.params.id -1;
+    const{name, role} = req.body;
+
+    const siswaNew = {
+        id: siswa.length *1,
+        name,
+        role
+    }
+    siswa[id] = {...siswaNew};
+
     
+    res.status(200).json({
+        message: 'sukses update',
+        data: siswa[id]
+    })
+
 
 })
 app.listen(3000, ()=> console.log('server running'))
